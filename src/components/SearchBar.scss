@@ -1,0 +1,43 @@
+
+/* ----------------------------------------------- */
+/* SEARCH BAR                                          */
+/* ----------------------------------------------- */
+
+.search-bar {
+    display: flex;
+    background-color: olivedrab;
+    justify-content: space-around;
+
+    &__logo-container { /* .search-bar__logo-container */
+        width: 18.75rem;
+        height: 3.75rem;
+    }
+
+    &__form-container { /* .search-bar__form-container */
+        padding: 1rem;
+
+        background-color: gold;
+        display: flex;
+        flex-basis: 100%;
+        justify-content: center;
+
+    }
+
+    &__form-label {
+        background-color: greenyellow;
+    }
+
+    &__form-search {
+        background-color: deeppink;
+    }
+
+    &__form-submit {
+        background-color: darkslategray;
+    }
+
+    &__carrito-container {
+        /* https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+        flex: 0 0 3rem; /* shorthand (grow shrink basis) */
+        background-color: goldenrod;
+    }
+}
