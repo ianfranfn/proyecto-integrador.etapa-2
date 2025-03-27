@@ -11,7 +11,7 @@ const Navbar = () => {
 
           {
             menuItems.map((item) => (
-              <NavItem item={item} key={item.id} />
+              <NavItem className="nav-bar__nav-item" item={item} key={item.id} />
             ))
           }
 

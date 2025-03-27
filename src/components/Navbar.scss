@@ -21,19 +21,57 @@
 
     &__nav-item { /* .nav-bar__nav-item */
         text-align: center;
-        background-color: pink;
+
+        
+        @media screen and (min-width: 1800px) {
+            text-align: left;
+        }
     }
 
     &__nav-link {
         display: block;
-        background-color: purple;
+        background-color: #466D1D;
         padding: 1rem 2rem;
         color: white;
-    }
+        
+        @media screen and (min-width: 768px) {
+            padding: 0.5rem;
+            width: 5.20rem;
+            margin-left: 0.10rem;
+            border-radius: 1rem;
+            color: #eee;
+            transition: color 0.3s;
 
-    @media screen and (min-width: 992px) {
-        & {
-            display: block;
+            &:hover {
+                color: #6D071A;
+            }
+        }
+
+        @media screen and (min-width: 1000px) {
+            font-size: 1.3rem;
+            padding: 0.6rem;
+            width: 7rem;
+        }
+
+        @media screen and (min-width: 1230px) {
+            font-size: 1.5rem;
+            width: 7.5rem;
+        }
+
+        @media screen and (min-width: 1400px) {
+            margin-left: 1.5rem;  
+           }
+
+        @media screen and (min-width: 1800px) {
+            padding: 1rem 2rem;
+            margin: 0.5rem 0;
+            width: 100%;
+
+            &:hover {
+                transform: translateX(10px);
+                background: #6D071A;
+                color: #eee;
+            }
         }
     }
 }

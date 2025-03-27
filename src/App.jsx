@@ -2,6 +2,7 @@ import { BrowserRouter } from "react-router"
 import Rutas from "./routes/Rutas"
 import Cabecera from "./components/Cabecera"
 import Footer from "./components/Footer"
+import Card from "./components/Card"
 
 const App = () => {
   return (

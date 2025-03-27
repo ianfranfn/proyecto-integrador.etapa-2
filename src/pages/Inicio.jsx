@@ -11,10 +11,10 @@ const Inicio = () => {
 
   return (
     <main>
-      <section class="section-cards">
-        <header class="section-cards__header">
-          <h1 class="section-cards__header-title">Menú del día</h1>
-          <p class="section-cards__header-search-result">Se encontraron X productos</p>
+      <section className="section-cards">
+        <header className="section-cards__header">
+          <h1 className="section-cards__header-title">Menú del día</h1>
+          <p className="section-cards__header-search-result">Se encontraron X productos</p>
         </header>
       </section>
 
