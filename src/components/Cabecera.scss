@@ -448,8 +448,17 @@
     }
 
     &__carrito-container {
+        display: flex;
+        align-items: center;
+        color: #6D071A;
+        transition: transform 0.3s;
         flex: 0 0 3rem; /* shorthand (grow shrink basis) */
         font-size: 2.5em;
+
+        &:hover {
+            transform: scale(1.1);
+            color: #466D1D;
+        }
 
         @media screen and (min-width: 768px) {
             font-size: 3.5em;

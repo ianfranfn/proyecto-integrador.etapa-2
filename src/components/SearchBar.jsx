@@ -11,7 +11,7 @@ const SearchBar = () => {
           <button type="submit" className="search-bar__form-submit"><i className="bi bi-search"></i>
           </button>
         </form>
-        <div className="search-bar__carrito-container"><i className="bi bi-cart4"></i></div>
+        <Link to="/carrito" className="search-bar__carrito-container"><i className="bi bi-cart4"></i></Link>
         <div className="menu-toogle">
           <label htmlFor="menu" className="menu-toogle__label">
             <span className="menu-toogle__top-bread" />

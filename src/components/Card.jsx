@@ -57,6 +57,8 @@ const Card = ({ producto }) => { // props = { producto }
     ref={cardRef}
     className={`card ${isActive ? 'active' : ''}`}
     onClick={handleCardClick}
+    role='button'
+    tabIndex={0}
     >
       <article className="card__article">
         <div className="card__image-container">

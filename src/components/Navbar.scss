@@ -3,19 +3,15 @@
 /* ----------------------------------------------- */
 
 .nav-bar {
-    background-color: mediumaquamarine;
-    display: none;
-
     &__nav-list { /* .nav-bar__nav-list */
         display: flex;
         flex-direction: column;
         justify-content: center;
         list-style-type: none;
 
-        @media screen and (min-width: 992px) {
-            & {
-                flex-direction: row;
-            } 
+        @media screen and (min-width: 768px) {
+            flex-direction: row;
+            display: flex; 
         }
     }
 
