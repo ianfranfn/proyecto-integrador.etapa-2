@@ -1,4 +1,3 @@
-import React from 'react'
 import useTitulo from '../hooks/useTitulo'
 
 const Contacto = () => {

@@ -2,18 +2,19 @@ import { BrowserRouter } from "react-router"
 import Rutas from "./routes/Rutas"
 import Cabecera from "./components/Cabecera"
 import Footer from "./components/Footer"
-import Card from "./components/Card"
+import { ProductosProvider } from "./contexts/ProductosContext"
+import { CarritoProvider } from "./contexts/CarritoContext"
 
 const App = () => {
   return (
     <BrowserRouter>
-
-        <Cabecera />
-    
-        <Rutas />
-
-        <Footer />
-    
+      <ProductosProvider>
+        <CarritoProvider>
+          <Cabecera />
+          <Rutas />
+          <Footer />
+        </CarritoProvider>
+      </ProductosProvider>
     </BrowserRouter>
   )
 }

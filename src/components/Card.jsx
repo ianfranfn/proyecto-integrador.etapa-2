@@ -1,21 +1,63 @@
-import { useContext } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './Card.scss';
 import CarritoContext from '../contexts/CarritoContext';
-import { SALSAS, GUARN } from './constants/menultems.js';
-import { crearRadioButton } from './helpers/radio.js';
+import { SALSAS, GUARN } from '../constants/menuItems.js';
+
 
 const Card = ({ producto }) => { // props = { producto }
+  const [isActive, setIsActive] = useState(false)
+  const cardRef = useRef(null)
   const { agregarProductoAlCarritoContext } = useContext(CarritoContext)
-  const { handleSubmit, control } = useForm()
+  const { handleSubmit, register } = useForm()
 
-  const handleAgregar = (producto) => {
-    agregarProductoAlCarritoContext(producto)
+  const handleCardClick = (e) => {
+    const interactiveElements = [
+      '.card__form-container',
+      '.card__botones-container',
+      'INPUT',
+      'LABEL',
+      'BUTTON'
+    ].some(selector => 
+      e.target.closest(selector) ||
+      e.target.matches(selector)
+    )
+
+    if (!interactiveElements) {
+      setIsActive(!isActive)
+    }
+  }
+
+
+  const crearRadioButton = (name, id, label) => {
+    return (
+      <label className='card__form-input-container' key={id}>
+        <input type="radio"
+        id={id}
+        value={id}
+        className='card__form-input'
+        {...register(name, { required: true })}
+        />
+        {label}
+      </label>
+    )
+  }
+
+  const handleAgregar = (formData) => {
+    agregarProductoAlCarritoContext({
+      ...producto,
+      opciones: formData
+    })
+    setIsActive(false)
   }
 
 
   return (
-    <div className="card">
+    <div
+    ref={cardRef}
+    className={`card ${isActive ? 'active' : ''}`}
+    onClick={handleCardClick}
+    >
       <article className="card__article">
         <div className="card__image-container">
           <img className="card__image" src={producto.foto} alt={producto.nombre} />
@@ -24,7 +66,6 @@ const Card = ({ producto }) => { // props = { producto }
           <h2 className="card__heading">{producto.nombre}</h2>
           <div className="card__description">
             <p>{producto.descripcion}</p>
-            <button onClick={() => handleAgregar(producto)}>Agregar</button>
           </div>
 
           <form className="card__form" onSubmit={handleSubmit(handleAgregar)}>
@@ -46,10 +87,7 @@ const Card = ({ producto }) => { // props = { producto }
 
             <div className="card__botones-container">
               <button type="submit" className="card__boton card__boton--carrito">
-                Carrito
-              </button>
-              <button type="button" className="card__boton card__boton--pedir-ahora">
-                Pedir ahora
+                Agregar al carrito
               </button>
             </div>
           </form>

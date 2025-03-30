@@ -11,35 +11,32 @@ const CarritoProvider = ( {children} ) => {
     const [agregarAlCarrito, eliminarDelCarrito, limpiarCarrito, carrito] = useLocalStorage('carrito', [])
     
     function elProductoEstaEnElCarrito(producto) {
-        //return true/false
-        const nuevoArray = carrito.filter(prod => prod.id === producto.id)
-        // 1 -> El producto ya esta en el carrito
-        // 0 -> el producto no esta en el carrito
-        return nuevoArray.length
+        return carrito.some(prod => prod.id === producto.id && JSON.stringify(prod.opciones) === JSON.stringify(producto.opciones));
     }
 
     function obtenerProductoDeCarrito(producto) {
         // Si encuentra el producto lo retorna
-        return carrito.find(prod => prod.id === producto.id)
+        return carrito.find(prod => prod.id === producto.id && JSON.stringify(prod.opciones) === JSON.stringify(producto.opciones));
     }
 
 
     const agregarProductoAlCarritoContext = (producto) => {
-        console.log('Ya estoy en el agregar del contexto', producto)
+        const productoExistente = carrito.find(prod => 
+            prod.id === producto.id && JSON.stringify(prod.opciones) === JSON.stringify(producto.opciones)
+        ) 
 
         // Averiguo si está o no está en el carrito y hago en consecuencia
-        if (!elProductoEstaEnElCarrito(producto)) {
-            console.log('No esta en el carrito')
-            producto.cantidad = 1
-            agregarAlCarrito(producto) // Agregar el producto en el localStorage y modificar estado
+        if (productoExistente) {
+            productoExistente.cantidad++
         } else {
-            console.log('Ya esta en el carrito')
-            const productoDeCarrito = obtenerProductoDeCarrito(producto)
-            console.log(productoDeCarrito)
-            productoDeCarrito.cantidad++
-            window.localStorage.setItem('carrito', JSON.stringify(carrito))
+            agregarAlCarrito({
+                ...producto,
+                cantidad: 1
+            })
         }
+        window.localStorage.setItem('carrito', JSON.stringify(carrito))
     }
+
 
     const eliminarProductoDelCarritoContext = (id) => {
         console.log(id)
@@ -68,9 +65,7 @@ const CarritoProvider = ( {children} ) => {
                 body: JSON.stringify(dataCarrito)
             }
 
-            const carritoGuardado = await peticionesHttp(urlCarrito, options)
-            console.log(carritoGuardado)
-
+            await peticionesHttp(urlCarrito, options)
             limpiarCarrito()
 
         } catch (error) {
