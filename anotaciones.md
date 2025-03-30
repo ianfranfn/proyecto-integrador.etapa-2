@@ -1,30 +1,14 @@
-# Arracando con el proyecto integrador (etapa 2)
+# Proyecto integrador - etapa 2
 
-```sh
-npm create vite@latest ./ -- --template react
-```
+Se inció el proyecto con las bases de la etapa 1, para luego irlas modificando en base a React.
+La mayoria del código escrito fue estudidado en clase, pero también tuve una parte de investigación por mi cuenta para implementar nuevos elementos y dependencias que puedan ayudarme con el codigo.
 
-## Instalamos la dependencias
+## Código utilizado 
 
-```sh
-npm install # npm i
-```
+Como fue dicho anteriormente, el código utilizado es en un 90% de lo aprendido en clase, sin contar con algunas otras partes que tuve que investigar para ser ayudado
 
-## Arrancamos servidor de desarrollo
+## Datos del alumno:
 
-```sh
-npm run dev
-```
-
-## Instalamos la dependencia de React Router
-
-```sh
-npm i react-router
-```
-
-
-## Instalamos la dependencia de JSON Server
-
-```sh
-npm i json-server -D
-```
+Nombre: Ian Franco Fariña Núñez
+Github: https://github.com/ianfranfn/proyecto-integrador.etapa-2.git
+Netlify: https://proyecto-integrador-etapa2-ian.netlify.app/
