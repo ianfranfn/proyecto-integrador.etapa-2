@@ -110,51 +110,82 @@
 
     &__form-container {
         display: none;
-        flex-direction: column;
-        gap: 1.5rem;
-        margin: 1rem 0;
-
-        @media screen and (min-width: 768px) {
-            flex-direction: row;
-            justify-content: space-between;
+        margin-top: 1rem;
+    
+        @media screen and (min-width: 1000px) {
+            gap: 1.2em;
+            margin: 1.2rem;
         }
     }
-
+    
     &__form-group {
         display: flex;
         flex-direction: column;
-        gap: 0.8rem;
-        width: 100%;
+        gap: 0.2rem;
     }
-
+    
     &__form-group-title {
-        color: #6D071A;
-        font-size: 1.1rem;
         margin-bottom: 0.5rem;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 1.1rem;
+        color: #6D071A;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    
+        @media screen and (min-width: 1000px) {
+            font-size: 1.2rem;
+        }
     }
-
+    
     &__form-input-container {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        
-        label {
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
     }
-
-    &__form-input[type="radio"] {
-        margin: 0;
-        width: 1.2rem;
-        height: 1.2rem;
+    
+    &__form-input {
+        margin: 0; 
     }
-
+    
     &__botones-container {
         display: none;
-        gap: 1rem;
         margin-top: 1.5rem;
+    }
+    
+    &__boton {
+        flex: 1; // Ambos botones ocupan el mismo espacio
+        padding: 0.75rem 1rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    
+        @media screen and (min-width: 1000px) {
+            padding: 0.7rem 1.2rem;
+            font-size: 1.1rem;
+        }
+    
+        &:hover {
+            transform: scale(1.05); // Efecto de escala al hacer hover
+        }
+    
+        &--carrito {
+            background-color: #6D071A;
+            color: white;
+    
+            &:hover {
+                background-color: #3a040e;
+            }
+        }
+    
+        &--pedir-ahora {
+            background-color: #28a745;
+            color: white;
+    
+            &:hover {
+                background-color: #1d7632; 
+            }
+        }
     }
 
     &__form-container,
