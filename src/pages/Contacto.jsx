@@ -2,6 +2,7 @@ import { Link } from 'react-router'
 import useTitulo from '../hooks/useTitulo'
 import './Contacto.scss'
 
+
 const Contacto = () => {
 
 
@@ -35,9 +36,7 @@ const Contacto = () => {
             className="contacto-search-bar__logo-container" 
             alt="Logo Humaitá" 
           />
-          <div className="contacto-search-bar__carrito-container">
-            <i className="bi bi-cart4"></i>
-          </div>
+          <Link to="/carrito" className="search-bar__carrito-container"><i className="bi bi-cart4"></i></Link>
           <div className="menu-toogle">
             <label htmlFor="menu" className="menu-toogle__label">
               <span className="menu-toogle__top-bread"></span>

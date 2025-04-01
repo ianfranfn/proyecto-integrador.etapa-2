@@ -19,7 +19,8 @@
     }
 
 
-    &__logo-container { /* .search-bar__logo-container */
+    &__logo-container {
+        /* .search-bar__logo-container */
         background-color: #eee;
         width: 11.75rem;
         height: 4.75rem;
@@ -47,7 +48,8 @@
 
     }
 
-    &__form-container { /* .search-bar__form-container */
+    &__form-container {
+        /* .search-bar__form-container */
         padding: 1rem;
         display: flex;
         flex-basis: 100%;
@@ -113,11 +115,12 @@
         @media screen and (min-width: 1230px) {
             font-size: 2em;
         }
-        
+
     }
 
     &__carrito-container {
-        flex: 0 0 3rem; /* shorthand (grow shrink basis) */
+        flex: 0 0 3rem;
+        /* shorthand (grow shrink basis) */
         font-size: 2.5em;
 
         @media screen and (min-width: 768px) {
@@ -159,7 +162,8 @@
     }
 
 
-    &__logo-container { /* .search-bar__logo-container */
+    &__logo-container {
+        /* .search-bar__logo-container */
         background-color: #eee;
         width: 20rem;
         height: 4.75rem;
@@ -193,8 +197,18 @@
     }
 
     &__carrito-container {
-        flex: 0 0 3rem; /* shorthand (grow shrink basis) */
-        font-size: 3em;
+        display: flex;
+        align-items: center;
+        color: #6D071A;
+        transition: transform 0.3s;
+        flex: 0 0 3rem;
+        /* shorthand (grow shrink basis) */
+        font-size: 2.5em;
+
+        &:hover {
+            transform: scale(1.1);
+            color: #466D1D;
+        }
 
         @media screen and (min-width: 768px) {
             font-size: 3.5em;
@@ -211,9 +225,9 @@
         }
 
         @media screen and (min-width: 1230px) {
-            margin-left: 10rem; 
+            margin-left: 10rem;
         }
-        
+
         @media screen and (min-width: 1400px) {
             margin-left: 15rem;
             font-size: 4rem;
@@ -240,20 +254,25 @@
 
     @media screen and (min-width: 768px) {
         display: none;
-        cursor: pointer; /* manito */
+        cursor: pointer;
+        /* manito */
     }
 
-    &__label { /* .menu-toogle__label */
+    &__label {
+        /* .menu-toogle__label */
         display: block;
         background-color: #ff8345;
         height: 100%;
         border-radius: 0.5rem;
-        
+
     }
 
-    &__top-bread, /* .menu-toogle__top-bread */
-    &__meat, /* .menu-toogle__top-bread */
-    &__bottom-bread { /* .menu-toogle__top-bread */
+    &__top-bread,
+    /* .menu-toogle__top-bread */
+    &__meat,
+    /* .menu-toogle__top-bread */
+    &__bottom-bread {
+        /* .menu-toogle__top-bread */
         displaY: block;
         background-color: #333;
         height: .2rem;
@@ -266,8 +285,10 @@
         top: .8rem;
     }
 
-    &__meat { /* Centrar sin usar flexbox */
-        top: 50%; /* centrando verticalmente */
+    &__meat {
+        /* Centrar sin usar flexbox */
+        top: 50%;
+        /* centrando verticalmente */
         margin-top: -.1rem;
     }
 
@@ -276,7 +297,8 @@
     }
 
     @media screen and (min-width: 768px) {
-        & { /* .menu-toogle */
+        & {
+            /* .menu-toogle */
             height: 5rem;
         }
     }
