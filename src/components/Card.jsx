@@ -88,9 +88,8 @@ const Card = ({ producto }) => { // props = { producto }
             </div>
 
             <div className="card__botones-container">
-              <button type="submit" className="card__boton card__boton--carrito">
-                Agregar al carrito
-              </button>
+              <button type="submit" className="card__boton card__boton--carrito">Agregar al carrito</button>
+              <button type="button" className="card__boton card__boton--pedir-ahora">Pedir ahora</button>
             </div>
           </form>
         </div>
