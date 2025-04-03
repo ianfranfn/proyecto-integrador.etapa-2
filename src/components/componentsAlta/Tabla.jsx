@@ -1,5 +1,4 @@
 import TablaFila from "./TablaFila"
-
 import './Tabla.scss'
 import { useContext } from "react"
 import ProductosContext from "../../contexts/ProductosContext"

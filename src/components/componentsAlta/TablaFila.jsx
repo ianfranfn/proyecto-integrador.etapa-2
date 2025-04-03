@@ -1,12 +1,12 @@
 import { useContext } from "react"
 import ProductosContext from "../../contexts/ProductosContext"
+import './Tabla.scss'
 
 const TablaFila = ({ producto }) => {
 
   const { eliminarProductoContext, setProductoAEditar } = useContext(ProductosContext)
 
   const handleEliminar = (id) => {
-    // Lógica de Sweet Alert
     eliminarProductoContext(id)
   }
 
