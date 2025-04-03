@@ -8,7 +8,7 @@ const Footer = () => {
         <p className="footer__texto">
             copyright © 2025 Humaitá resto-bar - 
             <Link to="#">Políticas de Privacidad</Link> | 
-            <Link to="../../pages/Contacto.jsx">Contacto</Link>
+            <Link to="/Contacto">Contacto</Link>
         </p>
         <p className="footer__texto">Desarrollado por Ian Fariña</p>
     </div>

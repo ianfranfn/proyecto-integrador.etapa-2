@@ -1,17 +1,194 @@
-table.tabla-carrito {
+.carrito-container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  
+    h1 {
+      font-family: 'Mojito-in-June', Arial, Helvetica, sans-serif;
+      color: #2c3e50;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+  
+    hr {
+      border: 1px solid #f8a57b;
+      margin: 2rem 0;
+    }
+  }
+  
+  .tabla-carrito {
+    width: 100%;
     border-collapse: collapse;
-    width: 95%;
-    margin: 1rem auto;
-    
-
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    margin: 2rem 0;
+  
     th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #ecf0f1;
+      vertical-align: middle;
     }
-
+  
     th {
-        background-color: #f2f2f2;
+      background: #f8a57b;
+      color: white;
+      font-weight: 600;
     }
-
-}
+  
+    tr:hover {
+      background-color: #fff8f5;
+    }
+  
+    td[colspan="5"] {
+      text-align: center;
+      color: #7f8c8d;
+      padding: 2rem;
+      font-style: italic;
+    }
+  
+   
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  
+   
+    .acciones-carrito {
+      display: flex;
+      gap: 0.5rem;
+  
+      button {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 500;
+  
+        &:first-child {
+          background: #e74c3c;
+          color: white;
+  
+          &:hover {
+            background: darken(#e74c3c, 10%);
+          }
+        }
+      }
+    }
+  
+   
+    td:nth-child(3),
+    td:nth-child(4) {
+      text-align: right;
+    }
+  }
+  
+ 
+  .botones-carrito {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+  
+    button {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+  
+      &:first-child { 
+        background: #6D071A;
+        color: white;
+  
+        &:hover {
+          background: darken(#6D071A, 10%);
+        }
+      }
+  
+      &:last-child {
+        background: #f8a57b;
+        color: white;
+  
+        &:hover {
+          background: darken(#f8a57b, 10%);
+        }
+      }
+    }
+  }
+  
+ 
+  @media screen and (max-width: 1800px) {
+    .carrito-container {
+      max-width: 1200px;
+    }
+  }
+  
+  @media screen and (max-width: 1400px) {
+    .tabla-carrito {
+      th, td {
+        padding: 0.8rem;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 1230px) {
+    .tabla-carrito {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+  
+  @media screen and (max-width: 970px) {
+    .tabla-carrito {
+      img {
+        width: 50px;
+        height: 50px;
+      }
+  
+      .acciones-carrito button {
+        padding: 0.5rem;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 850px) {
+    .carrito-container h1 {
+      font-size: 2rem;
+    }
+  
+    .botones-carrito {
+      flex-direction: column;
+      
+      button {
+        width: 100%;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .tabla-carrito {
+      th, td {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+      }
+  
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  
+    .botones-carrito button {
+      padding: 0.8rem;
+      font-size: 1rem;
+    }
+  }
