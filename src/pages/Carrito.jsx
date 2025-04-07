@@ -1,4 +1,4 @@
-import ListadoCarrito from "../components/ListadoCarrito"
+import ListadoCarrito from "../components/ComponentsCarrito/ListadoCarrito"
 import useTitulo from "../hooks/useTitulo"
 
 const Carrito = () => {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { peticionesHttp } from '../helpers/peticiones-http'
+import Spinner from '../components/Spinner'
 
 const ProductoDetalle = () => {
   const { id } = useParams()
@@ -34,7 +35,7 @@ const ProductoDetalle = () => {
           <p>Envío: {producto.envio ? 'Disponible' : 'No disponible'}</p>
         </>
       ) : (
-        <p>Cargando detalles del producto...</p>
+        <Spinner />
       )}
     </div>
   )
