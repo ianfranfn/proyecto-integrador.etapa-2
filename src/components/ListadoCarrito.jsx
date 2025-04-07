@@ -23,7 +23,7 @@ const ListadoCarrito = () => {
     }
 
   return (
-    <>
+    <div className="carrrito-container">
     <table className='tabla-carrito'>
         <thead>
             <tr>
@@ -50,13 +50,13 @@ const ListadoCarrito = () => {
     </table>
     <hr />
     { !carrito.length <= 0 && (
-            <>
+            <div className="botones-carrito">
                 <button onClick={handleLimpiarCarrito}>Vaciar Carrito</button>
                 <button onClick={handleComprar}>Comprar</button>
-            </>
+            </div>
         )
     }
-</>
+</div>
   )
 }
 
