@@ -1,10 +1,17 @@
 import { useContext } from "react"
 import ProductosContext from "../../contexts/ProductosContext"
 import './Tabla.scss'
+import { useNavigate } from "react-router"
 
 const TablaFila = ({ producto }) => {
 
   const { eliminarProductoContext, setProductoAEditar } = useContext(ProductosContext)
+
+  const navigate = useNavigate()
+
+  const handleVer = (id) => {
+    navigate(`/productos/detalle/${id}`)
+  }
 
   const handleEliminar = (id) => {
     eliminarProductoContext(id)
@@ -27,7 +34,7 @@ const TablaFila = ({ producto }) => {
         </td>
         <td>{producto.envio ? 'si' : 'no'}</td>
         <td>
-            <button>Ver</button>
+            <button onClick={() => handleVer(producto.id)}>Ver</button>
             <button onClick={() => handleEditar(producto)}>Editar</button>
             <button onClick={() => handleEliminar(producto.id)}>Borrar</button>
         </td>

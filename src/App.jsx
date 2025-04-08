@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router"
 import Rutas from "./routes/Rutas"
-import Cabecera from "./components/Cabecera"
-import Footer from "./components/Footer"
+import Cabecera from "./components/componentsLayout/Cabecera"
+import Footer from "./components/componentsLayout/Footer"
 import { ProductosProvider } from "./contexts/ProductosContext"
 import { CarritoProvider } from "./contexts/CarritoContext"
 
