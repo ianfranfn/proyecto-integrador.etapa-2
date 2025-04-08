@@ -7,13 +7,13 @@ import './ProductoDetalle.scss'
 const ProductoDetalle = () => {
   const { id } = useParams()
   const [producto, setProducto] = useState(null)
-  const urlBackend = `${import.meta.env.VITE_BACKEND_PRODUCTOS}/${id}`
+  const urlBackend = import.meta.env.VITE_BACKEND_PRODUCTOS
 
 
   useEffect(() => {
     const obtenerProducto = async () => {
       try {
-        const url = `${urlBackend}${id}`
+        const url = `${urlBackend}/${id}`
         const producto = await peticionesHttp(url, {})
         setProducto(producto)
       } catch (error) {
@@ -40,7 +40,7 @@ const ProductoDetalle = () => {
               <p className="detalle-item">Stock: {producto.stock}</p>
               <p className="detalle-item">Marca: {producto.marca}</p>
               <p className="detalle-item">Categoría: {producto.categoria}</p>
-              <p className="detalle-item detalle-especificacion">Detalles: {producto.detalles}</p>
+              <p className="detalle-item detalle-especificacion">Descripcion: {producto.descripcion}</p>
               <p className="detalle-item detalle-envio">
                 Envío: {producto.envio ? 'Disponible' : 'No disponible'}
               </p>
@@ -48,7 +48,7 @@ const ProductoDetalle = () => {
           </div>
         </>
       ) : (
-        <Spinner />
+        <Spinner className="spinner-detalle"/>
       )}
     </div>
     </div>
