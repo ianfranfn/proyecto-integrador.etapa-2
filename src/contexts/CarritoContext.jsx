@@ -5,11 +5,11 @@ import { peticionesHttp } from "../helpers/peticiones-http";
 // ! 1. Creación del contexto
 const CarritoContext = createContext()
 // ! 2. Armado del provider
-const CarritoProvider = ( {children} ) => {
+const CarritoProvider = ({ children }) => {
     const urlCarrito = import.meta.env.VITE_BACKEND_CARRITO
 
     const [agregarAlCarrito, eliminarDelCarrito, limpiarCarrito, carrito] = useLocalStorage('carrito', [])
-    
+
     function elProductoEstaEnElCarrito(producto) {
         return carrito.some(prod => prod.id === producto.id && JSON.stringify(prod.opciones) === JSON.stringify(producto.opciones));
     }
@@ -21,9 +21,9 @@ const CarritoProvider = ( {children} ) => {
 
 
     const agregarProductoAlCarritoContext = (producto) => {
-        const productoExistente = carrito.find(prod => 
+        const productoExistente = carrito.find(prod =>
             prod.id === producto.id && JSON.stringify(prod.opciones) === JSON.stringify(producto.opciones)
-        ) 
+        )
 
         // Averiguo si está o no está en el carrito y hago en consecuencia
         if (productoExistente) {
@@ -61,7 +61,7 @@ const CarritoProvider = ( {children} ) => {
 
             const options = {
                 method: 'POST',
-                headers: { 'content-type': 'application/json'},
+                headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(dataCarrito)
             }
 
@@ -73,9 +73,19 @@ const CarritoProvider = ( {children} ) => {
         }
     }
 
-    const calcularCantidadProductosCarritoContext = () => {
-        
-    }
+    const calcularSubtotalContext = () => {
+        return carrito.reduce((total, producto) => 
+          total + (producto.precio * producto.cantidad), 0
+        );
+      };
+      
+      const calcularTotalContext = () => {
+        return calcularSubtotalContext(); 
+      };
+      
+      const calcularCantidadTotalContext = () => {
+        return carrito.reduce((total, producto) => total + producto.cantidad, 0);
+      };
 
 
     const data = {
@@ -83,7 +93,10 @@ const CarritoProvider = ( {children} ) => {
         eliminarProductoDelCarritoContext,
         limpiarCarritoContext,
         guardarCarritoBackendContext,
-        carrito
+        carrito,
+        calcularSubtotalContext,
+        calcularTotalContext,
+        calcularCantidadTotalContext
     }
 
     return <CarritoContext.Provider value={data}>{children}</CarritoContext.Provider>

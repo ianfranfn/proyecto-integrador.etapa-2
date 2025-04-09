@@ -18,6 +18,14 @@ main {
     }
 }
 
+.sin-productos {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    width: 100%;
+    padding: 2rem;
+  }
+
 .cards-container {
     display: flex;
     flex-flow: row wrap;
@@ -63,3 +71,11 @@ main {
         padding: 0 4rem;
     }
 }
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 80rem;
+  }

@@ -5,7 +5,7 @@ import CarritoContext from '../contexts/CarritoContext';
 import { SALSAS, GUARN } from '../constants/menuItems.js';
 
 
-const Card = ({ producto }) => { // props = { producto }
+const Card = ({ producto }) => { 
   const [isActive, setIsActive] = useState(false)
   const cardRef = useRef(null)
   const { agregarProductoAlCarritoContext } = useContext(CarritoContext)

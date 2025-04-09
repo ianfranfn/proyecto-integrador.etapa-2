@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { peticionesHttp } from "../helpers/peticiones-http";
 
 // ! CREANDO CONTEXTO
@@ -101,13 +101,22 @@ const ProductosProvider = ( { children } ) => {
 
     }
 
+    const useProductos = () => {
+        const context = useContext(ProductosContext)
+        if (!context) {
+          throw new Error('useProductos debe usarse dentro de un ProductosProvider')
+        }
+        return context
+      }
+
     const data = {
         productos,
         crearProductoContext,
         actualizarProductoContext,
         eliminarProductoContext,
         productoAEditar,
-        setProductoAEditar
+        setProductoAEditar,
+        useProductos
     }
 
     return <ProductosContext.Provider value={data}> {children} </ProductosContext.Provider>

@@ -26,7 +26,7 @@
         width: 100%;
         max-height: 400px; 
         object-fit: contain;
-        border-radius: 8px;
+        border-radius: 1rem;
         background: #f8f9fa;
         padding: 1rem;
     }
@@ -41,6 +41,37 @@
         &:nth-child(1) {
             color: #e74c3c;
             font-weight: 700;
+        }
+    }
+
+    .detalle-boton {
+        color: #216122;
+        background-color: #a9fdaa;
+        width: 33rem;
+        height: 4rem;
+        font-size: 1.4rem;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        border: 1px solid #309d32;
+        border-radius: 1rem;
+        cursor: pointer; 
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        overflow: hidden; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+      
+        
+        &:hover {
+          background-color: #8dfa8f; 
+          transform: translateY(-2px); 
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+          border-color: #1e7d20; 
+        }
+      
+       
+        &:active {
+          transform: translateY(0); 
+          background-color: #7ae87c; 
+          transition: all 0.1s ease; 
         }
     }
 
