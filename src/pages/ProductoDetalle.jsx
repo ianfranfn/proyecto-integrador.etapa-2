@@ -44,11 +44,14 @@ const ProductoDetalle = () => {
               <p className="detalle-item detalle-envio">
                 Envío: {producto.envio ? 'Disponible' : 'No disponible'}
               </p>
+              <button className='detalle-boton'>Pedir ahora!</button>
             </div>
           </div>
         </>
       ) : (
-        <Spinner className="spinner-detalle"/>
+        <div className="spinner-detalle">
+        <Spinner />
+        </div>
       )}
     </div>
     </div>
