@@ -1,55 +1,68 @@
 import { useState } from "react"
 
-export const useLocalStorage = ( clave, valorInicial = []) => {
-
-    const getValorAlmacenado = () => {
-
+export const useLocalStorage = (clave, valorInicial = []) => {
+    const [valorAlmacenado, setValorAlmacenado] = useState(() => {
         try {
-            const valorAlmacenado = window.localStorage.getItem(clave)
-            return valorAlmacenado ? JSON.parse(valorAlmacenado) : valorInicial
+            const valor = window.localStorage.getItem(clave)
+            return valor ? JSON.parse(valor) : valorInicial
         } catch (error) {
-            console.error(`Error al obtener ${clave} del localStorage ${error}`)
+            console.error(`Error al obtener ${clave} del localStorage: ${error}`)
             return valorInicial
         }
+    })
 
-    }
-
-    const [valorAlmacenado, setValorAlmacenado] = useState(getValorAlmacenado())
-
-    const guardarValor = (valorNuevo) => {
-
+    const guardarValor = (nuevoItem) => {
         try {
-            const nuevoValorAlmacenado = [...valorAlmacenado, valorNuevo] // creo un nuevo array con lo que tenía más lo nuevo
-            setValorAlmacenado(nuevoValorAlmacenado) // seteo el estado (Cambiar el estado)
-            window.localStorage.setItem(clave, JSON.stringify(nuevoValorAlmacenado))
-        } catch (error) {
-            console.error(`Error al guardar ${clave} del localStorage: ${error}`)
-        }
+            const nuevoCarrito = [...valorAlmacenado]
+            const itemExistenteIndex = nuevoCarrito.findIndex(item =>
+                item.id === nuevoItem.id &&
+                JSON.stringify(item.opciones) === JSON.stringify(nuevoItem.opciones)
+            )
 
+            if (itemExistenteIndex !== -1) {
+                // Usar la cantidad del nuevoItem si existe
+                nuevoCarrito[itemExistenteIndex] = {
+                    ...nuevoCarrito[itemExistenteIndex],
+                    cantidad: nuevoItem.cantidad !== undefined ?
+                        nuevoItem.cantidad :
+                        nuevoCarrito[itemExistenteIndex].cantidad + 1
+                }
+            } else {
+                nuevoCarrito.push({ ...nuevoItem, cantidad: 1 })
+            }
+
+            setValorAlmacenado(nuevoCarrito);
+            window.localStorage.setItem(clave, JSON.stringify(nuevoCarrito));
+        } catch (error) {
+            console.error(`Error al guardar en localStorage: ${error}`);
+        }
     }
 
     const eliminarValor = (id) => {
         try {
-            //const nuevoValorAlmacenado = valorAlmacenado // copia
-            const nuevoValorAlmacenado = [...valorAlmacenado] // clona el array
-
-            const indice = nuevoValorAlmacenado.findIndex(item => item.id === id) // Busco indice del producto que están queriendo eliminadar dentro del array clonado
-            nuevoValorAlmacenado.splice(indice, 1) // Busco dentro del array clonado, el producto y lo borro
-            console.log(nuevoValorAlmacenado) // Acá tengo todo el array del estado menos el producto eliminado
-            setValorAlmacenado(nuevoValorAlmacenado)
-            window.localStorage.setItem(clave, JSON.stringify(nuevoValorAlmacenado))
+            const nuevoCarrito = valorAlmacenado.filter(item => item.id !== id)
+            setValorAlmacenado(nuevoCarrito)
+            window.localStorage.setItem(clave, JSON.stringify(nuevoCarrito))
         } catch (error) {
-            console.error(`Error al eliminar ${clave} del localstorage con ${id} del producto ${error}`)
+            console.error(`Error al eliminar del localStorage: ${error}`)
         }
     }
 
     const limpiarValores = () => {
-        window.localStorage.clear()
-        window.localStorage.setItem(clave, JSON.stringify(valorInicial))
-        setValorAlmacenado(valorInicial)
+        try {
+            setValorAlmacenado(valorInicial)
+            window.localStorage.setItem(clave, JSON.stringify(valorInicial))
+        } catch (error) {
+            console.error(`Error al limpiar localStorage: ${error}`)
+        }
     }
-    //           0
-    return [ guardarValor, eliminarValor, limpiarValores, valorAlmacenado ]
 
+    return [
+        guardarValor,
+        eliminarValor,
+        limpiarValores,
+        valorAlmacenado, // Ahora en cuarta posición
+        setValorAlmacenado // Nuevo setter directo
+    ]
 }
 

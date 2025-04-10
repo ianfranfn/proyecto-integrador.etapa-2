@@ -1,52 +1,53 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { peticionesHttp } from "../helpers/peticiones-http";
 
-// ! 1. Creación del contexto
+
 const CarritoContext = createContext()
-// ! 2. Armado del provider
+
 const CarritoProvider = ({ children }) => {
-    const urlCarrito = import.meta.env.VITE_BACKEND_CARRITO
+    const urlCarrito = import.meta.env.VITE_BACKEND_CARRITO;
+    const [carrito, setCarrito] = useState(() => {
 
-    const [agregarAlCarrito, eliminarDelCarrito, limpiarCarrito, carrito] = useLocalStorage('carrito', [])
+        const carritoGuardado = localStorage.getItem('carrito');
+        return carritoGuardado ? JSON.parse(carritoGuardado) : [];
+    });
 
-    function elProductoEstaEnElCarrito(producto) {
-        return carrito.some(prod => prod.id === producto.id && JSON.stringify(prod.opciones) === JSON.stringify(producto.opciones));
-    }
 
-    function obtenerProductoDeCarrito(producto) {
-        // Si encuentra el producto lo retorna
-        return carrito.find(prod => prod.id === producto.id && JSON.stringify(prod.opciones) === JSON.stringify(producto.opciones));
-    }
-
+    useEffect(() => {
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+    }, [carrito]);
 
     const agregarProductoAlCarritoContext = (producto) => {
-        const productoExistente = carrito.find(prod =>
-            prod.id === producto.id && JSON.stringify(prod.opciones) === JSON.stringify(producto.opciones)
-        )
+        const nuevoCarrito = [...carrito]
+        const productoExistenteIndex = nuevoCarrito.findIndex(prod =>
+            prod.id === producto.id &&
+            JSON.stringify(prod.opciones) === JSON.stringify(producto.opciones)
+        );
 
-        // Averiguo si está o no está en el carrito y hago en consecuencia
-        if (productoExistente) {
-            productoExistente.cantidad++
+        if (productoExistenteIndex !== -1) {
+            nuevoCarrito[productoExistenteIndex] = {
+                ...nuevoCarrito[productoExistenteIndex],
+                cantidad: producto.cantidad || nuevoCarrito[productoExistenteIndex].cantidad + 1
+            }
         } else {
-            agregarAlCarrito({
-                ...producto,
-                cantidad: 1
-            })
+            nuevoCarrito.push({ ...producto, cantidad: 1 })
         }
-        window.localStorage.setItem('carrito', JSON.stringify(carrito))
+        setCarrito(nuevoCarrito)
     }
 
-
     const eliminarProductoDelCarritoContext = (id) => {
-        console.log(id)
-        eliminarDelCarrito(id)
+        const nuevoCarrito = carrito.filter(producto => producto.id !== id);
+        setCarrito(nuevoCarrito);
+        window.localStorage.setItem('carrito', JSON.stringify(nuevoCarrito))
     }
 
     const limpiarCarritoContext = () => {
-        console.log('Limpiando carrito....')
-        limpiarCarrito()
+        setCarrito([]);
+        window.localStorage.setItem('carrito', JSON.stringify([]))
     }
+
+
 
     const guardarCarritoBackendContext = async () => {
 
@@ -74,33 +75,28 @@ const CarritoProvider = ({ children }) => {
     }
 
     const calcularSubtotalContext = () => {
-        return carrito.reduce((total, producto) => 
-          total + (producto.precio * producto.cantidad), 0
+        return carrito.reduce((total, producto) =>
+            total + (producto.precio * producto.cantidad), 0
         );
-      };
-      
-      const calcularTotalContext = () => {
-        return calcularSubtotalContext(); 
-      };
-      
-      const calcularCantidadTotalContext = () => {
-        return carrito.reduce((total, producto) => total + producto.cantidad, 0);
-      };
+    };
+
+    const calcularTotalContext = () => {
+        return calcularSubtotalContext();
+    };
 
 
     const data = {
+        carrito,
         agregarProductoAlCarritoContext,
         eliminarProductoDelCarritoContext,
         limpiarCarritoContext,
         guardarCarritoBackendContext,
-        carrito,
         calcularSubtotalContext,
-        calcularTotalContext,
-        calcularCantidadTotalContext
+        calcularTotalContext
     }
 
     return <CarritoContext.Provider value={data}>{children}</CarritoContext.Provider>
 }
-// ! 3. Exportaciones
+
 export { CarritoProvider }
 export default CarritoContext

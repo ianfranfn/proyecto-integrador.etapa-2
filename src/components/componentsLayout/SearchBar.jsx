@@ -2,14 +2,16 @@ import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import './SearchBar.scss'
 import ProductosContext from '../../contexts/ProductosContext'
-import { useCarrito } from '../../contexts/CarritoContext'
+import useCarrito from '../../hooks/useCarrito'
 
 const SearchBar = () => {
 
   const [terminoBusqueda, setTerminoBusqueda] = useState('')
   const navigate = useNavigate()
   const { productos } = useContext(ProductosContext)
-  const { calcularCantidadTotalContext } = useCarrito()
+  const { carrito } = useCarrito()
+
+  const cantidadEnCarrito = carrito.reduce((total, producto) => total + producto.cantidad, 0)
 
   const handleBuscar = (e) => {
     e.preventDefault();
@@ -45,9 +47,9 @@ const SearchBar = () => {
         </button>
       </form>
         <Link to="/carrito" className="search-bar__carrito-container"><i className="bi bi-cart4"></i>
-        {calcularCantidadTotalContext() > 0 && (
+        {cantidadEnCarrito > 0 && (
           <span className='contador-carrito'>
-            {calcularCantidadTotalContext()}
+            {cantidadEnCarrito}
           </span>
         )}
         </Link>
