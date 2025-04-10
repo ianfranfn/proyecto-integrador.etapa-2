@@ -1,9 +1,13 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import CarritoContext from "../../contexts/CarritoContext"
 import ItemCarrito from "./ItemCarrito"
 import './ListadoCarrito.scss'
 
 const ListadoCarrito = () => {
+
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(false)
 
     const {
         carrito,
@@ -16,9 +20,18 @@ const ListadoCarrito = () => {
 
     console.log(carrito)
 
-    const handleComprar = () => {
-        console.log('Comprando...')
-        guardarCarritoBackendContext()
+    const handleComprar = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            await guardarCarritoBackendContext();
+            setSuccess(true);
+            setTimeout(() => setSuccess(false), 3000);
+        } catch (error) {
+            setError('Error al procesar la compra. Intente nuevamente.');
+        } finally {
+            setLoading(false);
+        }
     }
 
     const handleLimpiarCarrito = () => {
@@ -73,10 +86,15 @@ const ListadoCarrito = () => {
             {!carrito.length <= 0 && (
                 <div className="botones-carrito">
                     <button onClick={handleLimpiarCarrito}>Vaciar Carrito</button>
-                    <button onClick={handleComprar}>Comprar</button>
+                    <button
+                        onClick={handleComprar}
+                        disabled={loading}>
+                        {loading ? 'Procesando...' : 'Comprar'}
+                    </button>
                 </div>
-            )
-            }
+            )}
+            {error && <div className="error-message">{error}</div>}
+            {success && <div className="success-message">¡Compra exitosa! 🎉</div>}
         </div>
     )
 }

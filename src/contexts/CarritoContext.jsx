@@ -50,29 +50,29 @@ const CarritoProvider = ({ children }) => {
 
 
     const guardarCarritoBackendContext = async () => {
-
         try {
-            console.log('Llegó al contexto la señal de guardado')
-
             const dataCarrito = {
-                createAt: Date.now(),
-                cantidad: carrito.length,
-                carrito
-            }
-
+              fecha: new Date().toISOString(), 
+              items: carrito,
+              total: calcularTotalContext(),
+              cantidad: carrito.length,
+              estado: "completado"
+            };
+        
             const options = {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify(dataCarrito)
-            }
-
-            await peticionesHttp(urlCarrito, options)
-            limpiarCarrito()
-
-        } catch (error) {
-            console.error('[guardarCarritoBackendContext]', error)
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify(dataCarrito)
+            };
+        
+            await peticionesHttp(urlCarrito, options);
+            limpiarCarritoContext(); 
+            console.log('Carrito guardado en MockAPI!');
+          } catch (error) {
+            console.error('[guardarCarritoBackendContext]', error);
+            throw error;
+          }
         }
-    }
 
     const calcularSubtotalContext = () => {
         return carrito.reduce((total, producto) =>

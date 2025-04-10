@@ -35,7 +35,6 @@ const ProductosProvider = ( { children } ) => {
 
         try {
             // Es borrar el atributo/key id del objeto productoNuevo
-            delete productoNuevo.id 
 
             const options = {
                 method: 'POST',
@@ -45,8 +44,7 @@ const ProductosProvider = ( { children } ) => {
             
             const prods = await peticionesHttp(url, options)
             // console.log(prods)
-            const nuevoEstadoProductos = [...productos, prods]
-            setProductos(nuevoEstadoProductos)
+            setProductos([...productos, prods])
             
         } catch (error) {
             console.error('[crearProductoContext]', error)
@@ -65,7 +63,7 @@ const ProductosProvider = ( { children } ) => {
                 body: JSON.stringify(productoAEditar)
             }
 
-            const urlActualizar = url + productoAEditar.id
+            const urlActualizar = `${url}/${productoAEditar.id}`
 
             const productoEditado = await peticionesHttp(urlActualizar, options)
             console.log(productoEditado)
@@ -83,7 +81,7 @@ const ProductosProvider = ( { children } ) => {
 
         try {
 
-            const urlEliminacion = url + id
+            const urlEliminacion = `${url}/${id}`
 
             const options = {
                 method: 'DELETE'
