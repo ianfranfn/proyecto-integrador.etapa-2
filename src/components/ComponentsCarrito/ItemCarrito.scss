@@ -10,31 +10,62 @@
     font-weight: 600;
     color: #2c3e50;
   }
-  
-  .precio-carrito {
-    font-weight: 600;
-    color: #27ae60;
-  }
-  
-  .boton-eliminar {
-    background: #e74c3c !important;
-    padding: 0.5rem 1rem !important;
-    display: flex !important;
+
+  .contador-cantidad {
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
+    gap: 0.8rem;
+    
+    .boton-contador {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background: #f8f9fa;
+      cursor: pointer;
+      transition: all 0.3s ease;
   
-    &:hover {
-      background: darken(#e74c3c, 10%) !important;
-      transform: translateY(-1px);
-    }
-  
-    .icono-accion {
-      font-size: 0.9rem;
+      &:hover {
+        background: #e9ecef;
+        transform: scale(1.05);
+      }
+      
+      &:active {
+        transform: scale(0.95);
+      }
     }
   }
   
-  // Media Queries
+  .precio-carrito,
+.subtotal-carrito {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.boton-eliminar {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #c0392b;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+td {
+  vertical-align: middle;
+  padding: 1rem 0.5rem;
+}
+  
   @media screen and (min-width: 970px) {
     .imagen-carrito {
       width: 50px;
