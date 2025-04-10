@@ -1,5 +1,5 @@
 import './Cabecera.scss'
-import Navbar from "../Navbar";
+import Navbar from "./Navbar";
 import SearchBar from "./SearchBar";
 
 const Cabecera = () => {
