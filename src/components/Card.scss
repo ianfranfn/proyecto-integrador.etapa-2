@@ -164,9 +164,27 @@
             padding: 0.7rem 1.2rem;
             font-size: 1.1rem;
         }
+
+        &--ver-detalles {
+            background-color: #3498db; 
+            color: white;
+            
+            &:hover {
+              background-color: #2980b9;
+              box-shadow: 0 2px 8px rgba(52, 152, 219, 0.4);
+            }
+            
+            &:hover {
+              transform: translateY(-2px);
+            }
+            
+            &:active {
+              transform: translateY(1px);
+            }
+          }
     
         &:hover {
-            transform: scale(1.05); // Efecto de escala al hacer hover
+            transform: scale(1.05); 
         }
     
         &--carrito {

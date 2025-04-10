@@ -3,9 +3,11 @@ import { useForm } from 'react-hook-form';
 import './Card.scss';
 import CarritoContext from '../contexts/CarritoContext';
 import { SALSAS, GUARN } from '../constants/menuItems.js';
+import { useNavigate } from 'react-router';
 
 
-const Card = ({ producto }) => { 
+const Card = ({ producto }) => {
+  const navigate = useNavigate()
   const [isActive, setIsActive] = useState(false)
   const cardRef = useRef(null)
   const { agregarProductoAlCarritoContext } = useContext(CarritoContext)
@@ -18,7 +20,7 @@ const Card = ({ producto }) => {
       'INPUT',
       'LABEL',
       'BUTTON'
-    ].some(selector => 
+    ].some(selector =>
       e.target.closest(selector) ||
       e.target.matches(selector)
     )
@@ -33,10 +35,10 @@ const Card = ({ producto }) => {
     return (
       <label className='card__form-input-container' key={id}>
         <input type="radio"
-        id={id}
-        value={id}
-        className='card__form-input'
-        {...register(name, { required: true })}
+          id={id}
+          value={id}
+          className='card__form-input'
+          {...register(name, { required: true })}
         />
         {label}
       </label>
@@ -54,11 +56,11 @@ const Card = ({ producto }) => {
 
   return (
     <div
-    ref={cardRef}
-    className={`card ${isActive ? 'active' : ''}`}
-    onClick={handleCardClick}
-    role='button'
-    tabIndex={0}
+      ref={cardRef}
+      className={`card ${isActive ? 'active' : ''}`}
+      onClick={handleCardClick}
+      role='button'
+      tabIndex={0}
     >
       <article className="card__article">
         <div className="card__image-container">
@@ -88,12 +90,19 @@ const Card = ({ producto }) => {
             </div>
 
             <div className="card__botones-container">
-              <button 
-              type="submit" 
-              className="card__boton card__boton--carrito"
-              onClick={() => handleAgregar(producto)}
+              <button
+                type="submit"
+                className="card__boton card__boton--carrito"
+                onClick={() => handleAgregar(producto)}
               >Carrito</button>
-              <button type="button" className="card__boton card__boton--pedir-ahora">Pedir ahora</button>
+
+              <button
+                type="button"
+                className="card__boton card__boton--ver-detalles"
+                onClick={() => navigate(`/productos/detalle/${producto.id}`)}
+              >
+                Ver detalles
+              </button>
             </div>
           </form>
         </div>

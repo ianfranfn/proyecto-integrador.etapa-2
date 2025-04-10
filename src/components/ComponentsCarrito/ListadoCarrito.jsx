@@ -56,6 +56,10 @@ const ListadoCarrito = () => {
 
             <div className="resumen-carrito">
                 <div className="resumen-item">
+                    <span>Productos en el carrito:</span>
+                    <span>{calcularCantidadTotalContext()}</span>
+                </div>
+                <div className="resumen-item">
                     <span>Subtotal:</span>
                     <span>${calcularSubtotalContext().toFixed(2)}</span>
                 </div>

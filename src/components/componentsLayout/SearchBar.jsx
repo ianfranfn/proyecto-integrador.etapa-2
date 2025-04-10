@@ -46,13 +46,7 @@ const SearchBar = () => {
           <i className="bi bi-search"></i>
         </button>
       </form>
-        <Link to="/carrito" className="search-bar__carrito-container"><i className="bi bi-cart4"></i>
-        {cantidadEnCarrito > 0 && (
-          <span className='contador-carrito'>
-            {cantidadEnCarrito}
-          </span>
-        )}
-        </Link>
+        <Link to="/carrito" className="search-bar__carrito-container"><i className="bi bi-cart4"></i></Link>
         <div className="menu-toogle">
           <label htmlFor="menu" className="menu-toogle__label">
             <span className="menu-toogle__top-bread" />

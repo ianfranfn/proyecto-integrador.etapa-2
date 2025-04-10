@@ -84,6 +84,10 @@ const CarritoProvider = ({ children }) => {
         return calcularSubtotalContext();
     };
 
+    const calcularCantidadTotalContext = () => {
+        return carrito.reduce((total, producto) => total + producto.cantidad, 0);
+      }
+
 
     const data = {
         carrito,
@@ -92,7 +96,8 @@ const CarritoProvider = ({ children }) => {
         limpiarCarritoContext,
         guardarCarritoBackendContext,
         calcularSubtotalContext,
-        calcularTotalContext
+        calcularTotalContext,
+        calcularCantidadTotalContext 
     }
 
     return <CarritoContext.Provider value={data}>{children}</CarritoContext.Provider>

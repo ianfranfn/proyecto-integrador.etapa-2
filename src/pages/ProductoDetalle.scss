@@ -2,7 +2,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
-    height: 58rem;
+    height: 72rem;
     min-height: 70vh;
 
     .detalle-titulo {
@@ -11,6 +11,7 @@
         border-radius: 35px;
         font-size: 1.8rem;
         margin: 2rem 0;
+        margin-top: 6rem;
         padding: 1rem;
         text-align: center;
     }
@@ -84,7 +85,6 @@
 
         .detalle-titulo {
             font-size: 2rem;
-            margin: 3rem 0;
         }
     }
 
@@ -105,7 +105,6 @@
     @media screen and (min-width: 1000px) {
         .detalle-titulo {
             font-size: 2.2rem;
-            margin: 4rem 0;
         }
     }
 

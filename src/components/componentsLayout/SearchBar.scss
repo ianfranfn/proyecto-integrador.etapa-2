@@ -123,61 +123,6 @@
         /* shorthand (grow shrink basis) */
         font-size: 2.5em;
 
-        .contador-carrito {
-            position: absolute;
-            top: 8px;
-            right: 70px;
-            background: #ff4444;
-            color: white;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-
-            @media screen and (min-width: 768px) {
-                top: 5px;
-                right: 20rem;
-            }
-
-            @media screen and (min-width: 850px) {
-                top: 5px;
-                right: 21rem;
-            }
-            @media screen and (min-width: 970px) {
-                top: 5px;
-                right: 29rem;
-            }
-            @media screen and (min-width: 1000px) {
-                top: 5px;
-                right: 32rem;
-            }
-            @media screen and (min-width: 1115px) {
-                top: 5px;
-                right: 36rem;
-            }
-            @media screen and (min-width: 1172px) {
-                top: 5px;
-                right: 40rem;
-            }
-            @media screen and (min-width: 1230px) {
-                top: 5px;
-                right: 34rem;
-            }
-            @media screen and (min-width: 1300px) {
-                top: 5px;
-                right: 39rem;
-            }
-            @media screen and (min-width: 1400px) {
-                top: 15px;
-                right: 37rem;
-                font-size: 1rem;
-            }
-        }
-
         @media screen and (min-width: 768px) {
             font-size: 3.5em;
             margin-right: 2rem;
