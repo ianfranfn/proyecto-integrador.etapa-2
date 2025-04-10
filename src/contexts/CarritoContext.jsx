@@ -20,10 +20,20 @@ const CarritoProvider = ({ children }) => {
 
     const agregarProductoAlCarritoContext = (producto) => {
         const nuevoCarrito = [...carrito]
+
+        const productoSimplificado = {
+            id: producto.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            foto: producto.foto,
+            opciones: producto.opciones ? producto.opciones : null
+        }
+
         const productoExistenteIndex = nuevoCarrito.findIndex(prod =>
-            prod.id === producto.id &&
-            JSON.stringify(prod.opciones) === JSON.stringify(producto.opciones)
-        );
+            prod.id === productoSimplificado.id &&
+            JSON.stringify(prod.opciones) === JSON.stringify(productoSimplificado.opciones)
+        )
+
 
         if (productoExistenteIndex !== -1) {
             nuevoCarrito[productoExistenteIndex] = {
@@ -31,8 +41,11 @@ const CarritoProvider = ({ children }) => {
                 cantidad: producto.cantidad || nuevoCarrito[productoExistenteIndex].cantidad + 1
             }
         } else {
-            nuevoCarrito.push({ ...producto, cantidad: 1 })
-        }
+            nuevoCarrito.push({ 
+              ...productoSimplificado, 
+              cantidad: 1 
+            });
+          }
         setCarrito(nuevoCarrito)
     }
 
@@ -52,27 +65,27 @@ const CarritoProvider = ({ children }) => {
     const guardarCarritoBackendContext = async () => {
         try {
             const dataCarrito = {
-              fecha: new Date().toISOString(), 
-              items: carrito,
-              total: calcularTotalContext(),
-              cantidad: carrito.length,
-              estado: "completado"
+                fecha: new Date().toISOString(),
+                items: carrito,
+                total: calcularTotalContext(),
+                cantidad: carrito.length,
+                estado: "completado"
             };
-        
+
             const options = {
-              method: 'POST',
-              headers: { 'content-type': 'application/json' },
-              body: JSON.stringify(dataCarrito)
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(dataCarrito)
             };
-        
+
             await peticionesHttp(urlCarrito, options);
-            limpiarCarritoContext(); 
+            limpiarCarritoContext();
             console.log('Carrito guardado en MockAPI!');
-          } catch (error) {
+        } catch (error) {
             console.error('[guardarCarritoBackendContext]', error);
             throw error;
-          }
         }
+    }
 
     const calcularSubtotalContext = () => {
         return carrito.reduce((total, producto) =>
@@ -86,7 +99,7 @@ const CarritoProvider = ({ children }) => {
 
     const calcularCantidadTotalContext = () => {
         return carrito.reduce((total, producto) => total + producto.cantidad, 0);
-      }
+    }
 
 
     const data = {
@@ -97,7 +110,7 @@ const CarritoProvider = ({ children }) => {
         guardarCarritoBackendContext,
         calcularSubtotalContext,
         calcularTotalContext,
-        calcularCantidadTotalContext 
+        calcularCantidadTotalContext
     }
 
     return <CarritoContext.Provider value={data}>{children}</CarritoContext.Provider>
