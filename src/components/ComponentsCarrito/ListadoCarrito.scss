@@ -83,6 +83,58 @@
       }
     }
   }
+
+  .contador-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  
+    button {
+      padding: 0.2rem 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #f8f9fa;
+      cursor: pointer;
+      
+      &:hover {
+        background: #e9ecef;
+      }
+    }
+  }
+  
+  .resumen-carrito {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+  
+    .resumen-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+  
+      &.total {
+        font-weight: bold;
+        font-size: 1.3rem;
+        border-top: 2px solid #ddd;
+        padding-top: 1rem;
+      }
+    }
+  }
+  
+  .btn-eliminar {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+  
+    &:hover {
+      background: #bb2d3b;
+    }
+  }
   
  
   .botones-carrito {
